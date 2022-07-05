@@ -14,6 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name="books")
+@NamedQuery(name="Book.findBookByISBN", query="select b from Book b where b.isbn = ?1")
+@NamedNativeQuery(name="Book.cheapBooks", query="select * from books b where b.price < ?1")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

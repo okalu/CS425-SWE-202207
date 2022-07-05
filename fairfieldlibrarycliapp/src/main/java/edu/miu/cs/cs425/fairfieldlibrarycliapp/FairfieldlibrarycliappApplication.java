@@ -67,7 +67,7 @@ public class FairfieldlibrarycliappApplication implements CommandLineRunner {
         var mcgAddr = new PrimaryAddress(null, "1000 N Court Street", "Cleveland",
                 "OH", "52335-0001", publisher);
 
-        publisher.setPrimaryAddress(mcgAddr);
+//        publisher.setPrimaryAddress(mcgAddr);
 
 //        var newMcGrawHillAddr = primaryAddressService.addNewPrimaryAddress(mcgAddr);
 //        publisher.setPrimaryAddress(newMcGrawHillAddr);
