@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -27,5 +28,12 @@ public class Book {
     @ManyToOne
     @JoinColumn(name="publisher_id", nullable = true)
     private Publisher publisher;
+    @ManyToMany
+    @JoinTable(
+            name = "books_authors",
+            joinColumns = {@JoinColumn(name="book_id", referencedColumnName = "bookId")},
+            inverseJoinColumns = {@JoinColumn(name = "author_id", referencedColumnName = "authorId")}
+    )
+    private List<Author> authors;
 
 }
