@@ -1,4 +1,4 @@
-package edu.miu.cs.cs425.fairfieldlibrarycliapp.model;
+package edu.miu.cs.cs425.fairfieldlibrarywebapp.model;
 
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -12,13 +12,12 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name="books")
 @NamedQuery(name="Book.findBookByISBN", query="select b from Book b where b.isbn = ?1")
-@NamedNativeQuery(name="Book.cheapBooks", query="select * from books b where b.price < ?1")
+//@NamedNativeQuery(name="Book.cheapBooks", query="select * from books b where b.price < ?1")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

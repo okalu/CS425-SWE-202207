@@ -2,10 +2,8 @@ package edu.miu.cs.cs425.fairfieldlibrarycliapp;
 
 import edu.miu.cs.cs425.fairfieldlibrarycliapp.model.PrimaryAddress;
 import edu.miu.cs.cs425.fairfieldlibrarycliapp.model.Publisher;
-import edu.miu.cs.cs425.fairfieldlibrarycliapp.repository.PublisherRepository;
 import edu.miu.cs.cs425.fairfieldlibrarycliapp.service.PrimaryAddressService;
 import edu.miu.cs.cs425.fairfieldlibrarycliapp.service.PublisherService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -69,8 +67,8 @@ public class FairfieldlibrarycliappApplication implements CommandLineRunner {
 
 //        publisher.setPrimaryAddress(mcgAddr);
 
-//        var newMcGrawHillAddr = primaryAddressService.addNewPrimaryAddress(mcgAddr);
-//        publisher.setPrimaryAddress(newMcGrawHillAddr);
+        var newMcGrawHillAddr = primaryAddressService.addNewPrimaryAddress(mcgAddr);
+        publisher.setPrimaryAddress(newMcGrawHillAddr);
 
         var updatedPublisher = publisherService.updatePublisher(publisher);
         System.out.println(updatedPublisher);

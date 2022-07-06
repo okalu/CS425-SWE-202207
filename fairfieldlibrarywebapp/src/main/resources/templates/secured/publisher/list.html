@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Fairfield Library website - Home</title>
+</head>
+<body>
+  <header th:replace="fragments/header :: header"></header>
+  <main>
+    <h1>List of our Publishers</h1>
+    <div>
+      <a href="/fairfieldlibrary/publisher/new">Add New Publisher</a>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Publisher Name</th>
+          <th>Primary Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="publisher, counter : ${publishers}">
+          <th th:text="${counter.count}"></th>
+          <td th:text="${publisher.name}"></td>
+          <td th:if="${publisher.primaryAddress != null}" th:text="${publisher.primaryAddress.street}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>
