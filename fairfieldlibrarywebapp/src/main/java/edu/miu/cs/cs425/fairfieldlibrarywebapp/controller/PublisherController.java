@@ -51,6 +51,15 @@ public class PublisherController {
             model.addAttribute("errors", bindingResult.getAllErrors());
             return "secured/publisher/new";
         }
+        if(publisher.getPrimaryAddress() != null) {
+            if(publisher.getPrimaryAddress().getStreet().equals("")
+                && publisher.getPrimaryAddress().getCity().equals("")
+                && publisher.getPrimaryAddress().getState().equals("")
+                && publisher.getPrimaryAddress().getZipCode().equals("")
+            ) {
+                publisher.setPrimaryAddress(null);
+            }
+        }
         publisherService.addNewPublisher(publisher);
         return "redirect:/fairfieldlibrary/publisher/list";
     }
