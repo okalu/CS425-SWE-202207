@@ -4,6 +4,7 @@ import edu.miu.cs.cs425.fairfieldlibrarywebapp.model.Publisher;
 import edu.miu.cs.cs425.fairfieldlibrarywebapp.repository.PublisherRepository;
 import edu.miu.cs.cs425.fairfieldlibrarywebapp.service.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class PublisherServiceImpl implements PublisherService {
 
     @Override
     public List<Publisher> getAllPublishers() {
-        var publishers = publisherRepository.findAll();
+        var publishers = publisherRepository.findAll(Sort.by("name"));
         return publishers;
     }
 

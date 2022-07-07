@@ -1,11 +1,12 @@
-package edu.miu.cs.cs425.fairfieldlibrarywebapp.model;
+package edu.miu.cs.cs425.fairfieldlibrarywebapi.model;
+
+import lombok.AllArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
-
+@AllArgsConstructor(staticName = "build")
 @Entity
 @Table(name = "publishers")
 public class Publisher {
@@ -18,17 +19,15 @@ public class Publisher {
     @NotBlank(message = "Publisher Name cannot be null or empty or blank spaces")// name="   "
     private String name;
 
-    private LocalDate startupDate;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="primary_addr_id", nullable = true)
     private PrimaryAddress primaryAddress;
 
     public Publisher() {
-        this(null, null, null);
+        this(null, null);
     }
 
-    public Publisher(Integer publisherId, String name, LocalDate startupDate) {
+    public Publisher(Integer publisherId, String name) {
         this.publisherId = publisherId;
         this.name = name;
     }
@@ -55,14 +54,6 @@ public class Publisher {
 
     public void setPrimaryAddress(PrimaryAddress primaryAddress) {
         this.primaryAddress = primaryAddress;
-    }
-
-    public LocalDate getStartupDate() {
-        return startupDate;
-    }
-
-    public void setStartupDate(LocalDate startupDate) {
-        this.startupDate = startupDate;
     }
 
     @Override

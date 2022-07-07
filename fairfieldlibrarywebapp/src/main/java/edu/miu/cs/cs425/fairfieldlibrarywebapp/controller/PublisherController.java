@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -61,6 +58,43 @@ public class PublisherController {
             }
         }
         publisherService.addNewPublisher(publisher);
+        return "redirect:/fairfieldlibrary/publisher/list";
+    }
+
+    @GetMapping(value = {"/edit/{publisherId}"})
+    public String displayEditPublisherForm(@PathVariable Integer publisherId, Model model) {
+        var publisher = publisherService.getPublisherById(publisherId);
+        if(publisher != null) {
+            model.addAttribute("publisher", publisher);
+            return "secured/publisher/edit";
+        }
+        return "redirect:/fairfieldlibrary/publisher/list";
+    }
+
+    @PostMapping(value = {"/update"})
+    public String updatePublisher(@Valid @ModelAttribute("publisher") Publisher publisher,
+          BindingResult bindingResult, Model model) {
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("publisher", publisher);
+            model.addAttribute("errors", bindingResult.getAllErrors());
+            return "secured/publisher/edit";
+        }
+        if(publisher.getPrimaryAddress() != null) {
+            if (publisher.getPrimaryAddress().getStreet().equals("")
+                    && publisher.getPrimaryAddress().getCity().equals("")
+                    && publisher.getPrimaryAddress().getState().equals("")
+                    && publisher.getPrimaryAddress().getZipCode().equals("")
+            ) {
+                publisher.setPrimaryAddress(null);
+            }
+        }
+        publisherService.updatePublisher(publisher);
+        return "redirect:/fairfieldlibrary/publisher/list";
+    }
+
+    @GetMapping(value = {"/delete/{publisherId}"}) // TODO Change to use QueryString param
+    public String deletePublisher(@PathVariable Integer publisherId) {
+        publisherService.deletePublisherById(publisherId);
         return "redirect:/fairfieldlibrary/publisher/list";
     }
 }

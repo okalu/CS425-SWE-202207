@@ -1,4 +1,4 @@
-package edu.miu.cs.cs425.fairfieldlibrarywebapp.model;
+package edu.miu.cs.cs425.fairfieldlibrarywebapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fairfield Library website - Edit Publisher</title>
+    <style>
+        a.std-lnk-btn {
+            text-decoration:none;color: #000000;border: 1px solid #000000;padding: 0.20em;background-color: #efefef;
+        }
+        input.std-btn {
+            color: #000000;border: 1px solid #000000;padding: 0.35em;background-color: #efefef;
+        }
+    </style>
+</head>
+<body>
+    <header th:replace="fragments/header :: header"></header>
+    <main>
+        <h1>Edit Publisher Form</h1>
+        <div style="border: 1px solid;padding: 1em;">
+            <div>
+                Fields marked with asterisk (*) are required.
+            </div>
+            <form method="post" action="/fairfieldlibrary/publisher/update" th:object="${publisher}">
+                <fieldset>
+                    <input name="publisherId" type="hidden" th:value="${publisher.publisherId}">
+                    <div>
+                        <label>Publisher Name*</label>
+                    </div>
+                    <div>
+                        <div><span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red;"></span></div>
+                        <input name="name" type="text" th:value="${publisher.name}" autofocus>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Primary Address</legend>
+                    <div>
+                        <label>Street</label>
+                    </div>
+                    <div>
+                        <input name="street" type="text" th:field="*{primaryAddress.street}">
+                    </div>
+                    <div>
+                        <label>City</label>
+                    </div>
+                    <div>
+                        <input name="city" type="text" th:field="*{primaryAddress.city}">
+                    </div>
+                    <div>
+                        <label>State</label>
+                    </div>
+                    <div>
+                        <input name="state" type="text" th:field="*{primaryAddress.state}">
+                    </div>
+                    <div>
+                        <label>Zip Code</label>
+                    </div>
+                    <div>
+                        <input name="zipCode" type="text" th:field="*{primaryAddress.zipCode}">
+                    </div>
+                </fieldset>
+                <div style="margin-top: 1em;">
+                    <a class="std-lnk-btn" href="/fairfieldlibrary/publisher/list">Cancel</a>
+                    <input class="std-btn" type="reset" value="Reset">
+                    <input class="std-btn" type="submit" value="Update Publisher">
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
