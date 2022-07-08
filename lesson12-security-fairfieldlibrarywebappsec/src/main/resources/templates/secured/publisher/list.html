@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+    <head th:replace="public/fragments/head-elements :: headElements"></head>
+    <title>Fairfield Library system - Publishers</title>
+</head>
+<body>
+    <div th:replace="public/fragments/header :: header"></div>
+    <div id="mainContainer" class="container">
+        <div style="width: 100%;">
+            <h3 style="display: inline;">Our Publishers</h3>
+            <span style="float: right;">
+                <a class="btn btn-outline-primary btn-lg" href="/fairfieldlibrary/secured/publisher/new">
+                    <i class="fa-brands fa-product-hunt"></i> Add a New Publisher
+                </a>
+            </span>
+        </div>
+        <hr/>
+        <div style="font-size: 1em">
+            <!-- table with publishers-->
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Publisher Name</th>
+                    <th scope="col">Street</th>
+                    <th scope="col">City</th>
+                    <th scope="col">State</th>
+                    <th scope="col">Zip Code</th>
+                    <th scope="col">&nbsp;</th>
+                    <th scope="col">&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="publisher,iterStat : ${publishers}">
+                    <!--th:onclick="@{document.location='/elibrary/book/edit/{bookId}'(bookId=${book.bookId})}" -->
+                    <th scope="row" th:text="${iterStat.count}+${'.'}"></th>
+                    <td th:text="${publisher.name}"></td>
+                    <td th:text="${publisher.primaryAddress.street}"></td>
+                    <td th:text="${publisher.primaryAddress.city}"></td>
+                    <td th:text="${publisher.primaryAddress.state}"></td>
+                    <td th:text="${publisher.primaryAddress.zipCode}"></td>
+                    <td>
+                        <a th:href="@{'/fairfieldlibrary/secured/publisher/edit/{publisherId}'(publisherId=${publisher.publisherId})}">
+                            <i class="fa-regular fa-pen-to-square"></i> Edit
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="@{'/fairfieldlibrary/secured/publisher/delete/{publisherId}'(publisherId=${publisher.publisherId})}">
+                            <i class="fa-solid fa-delete-left"></i> Delete
+                        </a>
+                        <!--                        <a data-toggle="modal" data-target="#confirmDeleteBookModal" th:href="@{'/elibrary/book/delete/' + ${book.bookId}}">Delete</a>-->
+                        <!--                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->
+                        <!--                            Launch demo modal-->
+                        <!--                        </button>-->
+                    </td>
+                </tr>
+                <tr th:if="${publishersCount < 1}">
+                    <td colspan="8" th:align="center">No publishers found</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <section>
+            <button id="btnOpenDialog">Open the Dialog Box</button>
+            <dialog id="dialog" style="width:12%; border: 4px solid lightblue; border-radius: 6%;">
+                <form method="dialog">
+                    <p>Hi, I am a dialog.</p>
+                    <button style="border: 3px solid lightblue;" class="btn btn primary">OK</button>
+                </form>
+            </dialog>
+        </section>
+    </div>
+
+    <div th:replace="public/fragments/footer :: footer"></div>
+</body>
+</html>

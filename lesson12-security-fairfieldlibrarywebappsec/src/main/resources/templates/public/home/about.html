@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="public/fragments/head-elements :: headElements"></head>
+    <title>Fairfield Library system - About Us</title>
+</head>
+<body>
+    <div th:replace="public/fragments/header :: header"></div>
+    <div id="mainContainer" class="container">
+        <h3>About Us</h3>
+        <hr/>
+        <div>
+            <img id="banner-img" th:src="@{/images/fairfield-city-logo.png}" alt="Fairfield City">
+        </div>
+        <div style="font-size: 1em">
+            <p>
+                This is some information about the Fairfield City Library system.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusantium atque dolore eaque error facilis, harum impedit mollitia obcaecati officiis optio quaerat rem tempore temporibus.
+            </p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam cumque delectus hic ipsum magni praesentium quam quisquam repellat, rerum saepe sit sunt ut voluptatem. A adipisci at culpa eius ex expedita nam porro voluptas! Commodi laboriosam reprehenderit suscipit. Blanditiis consequatur earum eveniet fuga ipsam nobis nulla qui. Alias, officia, possimus.</p>
+        </div>
+    </div>
+
+    <div th:replace="public/fragments/footer :: footer"></div>
+</body>
+</html>
