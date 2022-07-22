@@ -15,4 +15,6 @@ public interface PublisherService {
 
     void deletePublisherById(Integer publisherId);
 
+    void deletePrimaryAddressOfPublisher(Integer publisherId);
+
 }

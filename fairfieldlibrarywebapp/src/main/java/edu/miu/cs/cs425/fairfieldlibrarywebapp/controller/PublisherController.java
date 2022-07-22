@@ -48,6 +48,7 @@ public class PublisherController {
             model.addAttribute("errors", bindingResult.getAllErrors());
             return "secured/publisher/new";
         }
+        // This is necessary to avoid adding new empty address
         if(publisher.getPrimaryAddress() != null) {
             if(publisher.getPrimaryAddress().getStreet().equals("")
                 && publisher.getPrimaryAddress().getCity().equals("")
@@ -79,22 +80,31 @@ public class PublisherController {
             model.addAttribute("errors", bindingResult.getAllErrors());
             return "secured/publisher/edit";
         }
-        if(publisher.getPrimaryAddress() != null) {
-            if (publisher.getPrimaryAddress().getStreet().equals("")
-                    && publisher.getPrimaryAddress().getCity().equals("")
-                    && publisher.getPrimaryAddress().getState().equals("")
-                    && publisher.getPrimaryAddress().getZipCode().equals("")
-            ) {
-                publisher.setPrimaryAddress(null);
-            }
-        }
+        // This was necessary to set address object to null if empty address fields was submitted
+        // Now, this is NOT necessary -- just save edits to blanks if so
+        // Also, implement "Delete Address" feature
+//        if(publisher.getPrimaryAddress() != null) {
+//            if (publisher.getPrimaryAddress().getStreet().equals("")
+//                    && publisher.getPrimaryAddress().getCity().equals("")
+//                    && publisher.getPrimaryAddress().getState().equals("")
+//                    && publisher.getPrimaryAddress().getZipCode().equals("")
+//            ) {
+//                publisher.setPrimaryAddress(null);
+//            }
+//        }
         publisherService.updatePublisher(publisher);
         return "redirect:/fairfieldlibrary/publisher/list";
     }
 
-    @GetMapping(value = {"/delete/{publisherId}"}) // TODO Change to use QueryString param
+    @GetMapping(value = {"/delete/{publisherId}"}) // TODO Change/show to use QueryString param
     public String deletePublisher(@PathVariable Integer publisherId) {
         publisherService.deletePublisherById(publisherId);
+        return "redirect:/fairfieldlibrary/publisher/list";
+    }
+
+    @GetMapping(value = {"/primaryAddress/delete/{publisherId}"})
+    public String deletePrimaryAddressOfPublisher(@PathVariable Integer publisherId) {
+        publisherService.deletePrimaryAddressOfPublisher(publisherId);
         return "redirect:/fairfieldlibrary/publisher/list";
     }
 }

@@ -40,6 +40,9 @@
               <span th:text="${publisher.primaryAddress.street}"></span><br>
               <span th:text="${publisher.primaryAddress.city}+${', '}+${publisher.primaryAddress.state}+${' '}+${publisher.primaryAddress.zipCode}"></span>
             </p>
+            <a th:href="@{'/fairfieldlibrary/publisher/primaryAddress/delete/{publisherId}'(publisherId=${publisher.publisherId})}">
+              Delete Address
+            </a> <!--Done: Implemented this feature -->
           </td>
           <td th:if="${publisher.primaryAddress == null}"></td>
           <td><a th:href="@{'/fairfieldlibrary/publisher/edit/{publisherId}'(publisherId=${publisher.publisherId})}">Edit</a></td>
