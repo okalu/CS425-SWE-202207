@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>GDM - SRM - Suppliers</title>
+    <style>
+        table {
+            border: 1px solid #cccccc;
+            border-collapse: collapse;
+        }
+        table th, table td {
+            border: 1px solid #cccccc;
+            padding: 1em;
+        }
+    </style>
 </head>
 <body>
-$END$
+    <header>
+        <nav>
+            <a th:href="@{/}">Home</a> |
+            <a th:href="@{/srm/supplier/list}">Suppliers</a> |
+            <a>Products</a> |
+        </nav>
+    </header>
+    <h1>List of Suppliers</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Supplier Number</th>
+                <th>Name</th>
+                <th>Contact Phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="supplier, counter : ${suppliers}">
+                <td th:text="${counter.count}"></td>
+                <td th:text="${supplier.supplierNumber}"></td>
+                <td th:text="${supplier.name}"></td>
+                <td th:text="${supplier.contactPhoneNumber}"></td>
+            </tr>
+            <tr th:if="${suppliers.isEmpty()}">
+                <td colspan="4">No supplier data found</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
