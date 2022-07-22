@@ -1,0 +1,13 @@
+package com.gdm.srmwebapp;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class SrmwebappApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
