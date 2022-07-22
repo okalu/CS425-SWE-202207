@@ -16,4 +16,10 @@ public interface PublisherRepository extends JpaRepository<Publisher, Integer> {
     @Query(value = "select p from Publisher p where p.name = :name")
     Optional<Publisher> getPublisherByName(String name);
 
+    @Query(value = "select * from publishers p where p.publisher_name like %?1%", nativeQuery = true)
+    Optional<Publisher> getPublisherWhereNameStartsWith(String nameStart);
+
+//    @Query(value = "select * from publisher")
+//    List<Publisher> getAllPubs();
+
 }

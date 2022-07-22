@@ -42,9 +42,16 @@ public class PublisherRestController {
                 HttpStatus.OK);
     }
 
+
+    // TODO Re-implement this here
     @DeleteMapping(value = {"/delete/{publisherId}"})
     public ResponseEntity.BodyBuilder deletePublisher(@PathVariable Integer publisherId) {
         publisherService.deletePublisherById(publisherId);
         return ResponseEntity.status(HttpStatus.OK);
+    }
+
+    @GetMapping(value = {"/search/{nameStart}"})
+    public ResponseEntity<Publisher> searchPublisherByName(@PathVariable String nameStart) {
+        return ResponseEntity.ok(publisherService.searchPublisherByName(nameStart));
     }
 }

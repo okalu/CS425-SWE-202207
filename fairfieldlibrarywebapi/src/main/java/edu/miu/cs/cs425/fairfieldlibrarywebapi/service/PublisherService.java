@@ -17,4 +17,6 @@ public interface PublisherService {
 
     void deletePublisherById(Integer publisherId);
 
+    Publisher searchPublisherByName(String nameStart);
+
 }

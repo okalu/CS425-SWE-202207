@@ -50,4 +50,11 @@ public class PublisherServiceImpl implements PublisherService {
     public void deletePublisherById(Integer publisherId) {
         publisherRepository.deleteById(publisherId);
     }
+
+    @Override
+    public Publisher searchPublisherByName(String nameStart) {
+        return publisherRepository
+                .getPublisherWhereNameStartsWith(nameStart)
+                .orElse(null);
+    }
 }

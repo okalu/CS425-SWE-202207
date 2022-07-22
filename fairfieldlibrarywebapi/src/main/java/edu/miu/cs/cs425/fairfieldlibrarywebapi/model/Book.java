@@ -2,6 +2,7 @@ package edu.miu.cs.cs425.fairfieldlibrarywebapi.model;
 
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -26,6 +27,7 @@ public class Book {
     @NotBlank(message = "ISBN cannot be blank, empty or null")
     private String isbn;
     private String title;
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
     private LocalDate datePublished;
     private Integer numberOfCopies;
     private Double price;
